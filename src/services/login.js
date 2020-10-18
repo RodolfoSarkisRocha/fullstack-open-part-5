@@ -6,4 +6,12 @@ const login = async (credentials) => {
   return response.data;
 };
 
-export default { login };
+const setToken = (userToken) => {
+  window.localStorage.setItem('userToken', userToken);
+};
+
+const logout = () => {
+  window.localStorage.clear();
+};
+
+export default { login, setToken, logout };
