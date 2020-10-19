@@ -15,19 +15,15 @@ const App = () => {
     message: null,
     type: null,
   });
-  const [blog, setBlog] = useState({
-    title: '',
-    author: '',
-    url: '',
-  });
 
   const getBlogs = async () => {
     try {
       const blogs = await blogService.getAll();
       setBlogs(blogs);
     } catch (err) {
+      const message = err?.response?.data?.error;
       setFeedback({
-        message: err,
+        message,
         type: 'error',
       });
     }
@@ -64,32 +60,57 @@ const App = () => {
     setUser(null);
   };
 
-  const handleBlogInputs = (e) => {
-    const { value, name } = e.target;
-    setBlog({
-      ...blog,
-      [name]: value,
-    });
-  };
-
-  const handleBlogSubmit = async (e) => {
-    e.preventDefault();
+  const handleBlogSubmit = async (blog) => {
     try {
-      const createdBlog = await blogService.post(blog);
+      const createdBlog = await blogService.postBlog(blog);
 
       setFeedback({
         message: `A new blog ${createdBlog.title} by ${createdBlog.author} was created!`,
         type: 'success',
       });
       getBlogs();
-      setBlog({
-        title: '',
-        author: '',
-        url: '',
-      });
     } catch (err) {
+      const message = err?.response?.data?.error;
       setFeedback({
-        message: err,
+        message,
+        type: 'error',
+      });
+    }
+  };
+
+  const updateBlog = async (blog) => {
+    const updatedLikesBlog = {
+      ...blog,
+      likes: blog.likes + 1,
+    };
+    try {
+      await blogService.editBlog(updatedLikesBlog);
+      setFeedback({
+        message: 'Blog was successfully edited',
+        type: 'success',
+      });
+      getBlogs();
+    } catch (err) {
+      const message = err?.response?.data?.error;
+      setFeedback({
+        message,
+        type: 'error',
+      });
+    }
+  };
+
+  const removeBlog = async (id) => {
+    try {
+      await blogService.removeBlog(id);
+      setFeedback({
+        message: 'Blog was successfully deleted',
+        type: 'success',
+      });
+      getBlogs();
+    } catch (err) {
+      const message = err?.response?.data?.error;
+      setFeedback({
+        message,
         type: 'error',
       });
     }
@@ -101,15 +122,16 @@ const App = () => {
         <Header text='Blogs' />
         <Feedback message={feedback.message} type={feedback.type} />
         <LoggedUser user={user} handleLogout={handleLogout} />
-        <BlogForm
-          blog={blog}
-          handleBlogInputs={handleBlogInputs}
-          handleBlogSubmit={handleBlogSubmit}
-        />
+        <BlogForm handleBlogSubmit={handleBlogSubmit} />
         <div>
           <h2>Blogs</h2>
           {blogs.map((blog) => (
-            <Blog key={blog.id} blog={blog} />
+            <Blog
+              key={blog.id}
+              blog={blog}
+              updateBlog={updateBlog}
+              removeBlog={removeBlog}
+            />
           ))}
         </div>
       </>
