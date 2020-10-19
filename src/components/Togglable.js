@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Tooglable = ({ buttonLabel, children }, ref) => {
+const Togglable = React.forwardRef(({ buttonLabel, children }, ref) => {
   const [visible, setVisible] = useState(false);
 
   const hideWhenVisible = { display: visible ? 'none' : '' };
@@ -28,11 +28,13 @@ const Tooglable = ({ buttonLabel, children }, ref) => {
       </div>
     </div>
   );
-};
+});
 
-Tooglable.propTypes = {
+Togglable.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   children: PropTypes.node,
 };
 
-export default React.forwardRef(Tooglable);
+Togglable.displayName = 'Togglable';
+
+export default Togglable;

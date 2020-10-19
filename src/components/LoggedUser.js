@@ -13,8 +13,8 @@ const LoggedUser = ({ user, handleLogout }) => {
 };
 
 LoggedUser.propTypes = {
-  user: PropTypes.object,
-  handleLogout: PropTypes.func,
+  user: PropTypes.object.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default LoggedUser;

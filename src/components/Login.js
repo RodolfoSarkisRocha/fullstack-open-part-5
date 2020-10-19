@@ -59,8 +59,8 @@ const Login = ({ setUser, setFeedback }) => {
 };
 
 Login.propTypes = {
-  setUser: PropTypes.func,
-  setFeedback: PropTypes.func,
+  setUser: PropTypes.func.isRequired,
+  setFeedback: PropTypes.func.isRequired,
 };
 
 export default Login;
