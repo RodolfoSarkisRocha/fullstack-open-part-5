@@ -15,10 +15,10 @@ const Blog = ({ blog, updateBlog, removeBlog }) => {
   };
 
   return (
-    <div style={blogStyle}>
-      <span>{title}</span>
+    <div style={blogStyle} className='blog'>
+      <span>{title} {author}</span>
       <span>
-        <button onClick={() => updateBlog(blog)}>Like!</button>
+        <button className='like-button' onClick={() => updateBlog(blog)}>Like!</button>
         <button onClick={toggleDetails}>
           {visibleDetails ? 'Hide details' : 'View details'}
         </button>

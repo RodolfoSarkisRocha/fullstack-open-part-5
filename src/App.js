@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Blog from './components/Blog';
-import BlogForm from './components/BlogForm';
+import Blog from './components/Blog/Blog';
+import BlogForm from './components/BlogForm/BlogForm';
 import Header from './components/BlogHeader';
 import Feedback from './components/Feedback';
 import LoggedUser from './components/LoggedUser';

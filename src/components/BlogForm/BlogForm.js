@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import Togglable from './Togglable';
+import Togglable from '../Togglable/Togglable';
 
 const BlogForm = ({ handleBlogSubmit }) => {
   const blogFormRef = useRef();
@@ -38,15 +38,15 @@ const BlogForm = ({ handleBlogSubmit }) => {
       <form onSubmit={submitBlog}>
         <div>
           <label htmlFor='title'>Title: </label>
-          <input name='title' value={title} onChange={handleBlogInputs} />
+          <input id='title' name='title' value={title} onChange={handleBlogInputs} />
         </div>
         <div>
           <label htmlFor='author'>Author: </label>
-          <input name='author' value={author} onChange={handleBlogInputs} />
+          <input id='author' name='author' value={author} onChange={handleBlogInputs} />
         </div>
         <div>
           <label htmlFor='url'>Url: </label>
-          <input name='url' value={url} onChange={handleBlogInputs} />
+          <input id='url' name='url' value={url} onChange={handleBlogInputs} />
         </div>
         <button type='submit'>Create</button>
       </form>
@@ -54,8 +54,7 @@ const BlogForm = ({ handleBlogSubmit }) => {
   );
 };
 
-BlogForm.propTypes = {
-  blog: PropTypes.object.isRequired,
+BlogForm.propTypes = {  
   handleBlogInputs: PropTypes.func.isRequired,
   handleBlogSubmit: PropTypes.func.isRequired,
 };
