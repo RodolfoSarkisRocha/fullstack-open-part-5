@@ -38,11 +38,11 @@ const App = () => {
   }, [blogs]);
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser');
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser');    
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
-      loginService.setToken(user.token);
+      localStorage.setItem('userToken', user.token);      
     }
   }, []);
 
@@ -125,7 +125,7 @@ const App = () => {
         <BlogForm handleBlogSubmit={handleBlogSubmit} />
         <div>
           <h2>Blogs</h2>
-          {blogs.map((blog) => (
+          {blogs?.map((blog) => (
             <Blog
               key={blog.id}
               blog={blog}

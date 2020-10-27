@@ -1,5 +1,5 @@
 const getUserToken = () => {
-  const userToken = window.localStorage.getItem('userToken');
+  const userToken = localStorage.getItem('userToken');  
   return `Bearer ${userToken}`;
 };
 

@@ -48,14 +48,13 @@ const BlogForm = ({ handleBlogSubmit }) => {
           <label htmlFor='url'>Url: </label>
           <input id='url' name='url' value={url} onChange={handleBlogInputs} />
         </div>
-        <button type='submit'>Create</button>
+        <button id='submit-blog-button' type='submit'>Create</button>
       </form>
     </Togglable>
   );
 };
 
-BlogForm.propTypes = {  
-  handleBlogInputs: PropTypes.func.isRequired,
+BlogForm.propTypes = {    
   handleBlogSubmit: PropTypes.func.isRequired,
 };
 

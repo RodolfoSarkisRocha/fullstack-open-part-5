@@ -2,16 +2,14 @@ import axios from 'axios';
 const baseUrl = '/api/login';
 
 const login = async (credentials) => {
-  const response = await axios.post(baseUrl, credentials);
+  const response = await axios.post(baseUrl, credentials);  
+  localStorage.setItem('userToken', response.data.token);
+  localStorage.setItem('loggedBlogappUser', JSON.stringify(response.data));
   return response.data;
 };
 
-const setToken = (userToken) => {
-  window.localStorage.setItem('userToken', userToken);
-};
-
 const logout = () => {
-  window.localStorage.clear();
+  localStorage.clear();
 };
 
-export default { login, setToken, logout };
+export default { login, logout };

@@ -2,11 +2,11 @@ import axios from 'axios';
 import utils from '../utils/utils';
 const baseUrl = '/api/blogs';
 
-const config = {
+const config = () => ({
   headers: {
     Authorization: utils.getUserToken(),
   },
-};
+});
 
 const getAll = async () => {
   const response = await axios.get(baseUrl);
@@ -22,7 +22,7 @@ const getAll = async () => {
 };
 
 const postBlog = async (body) => {
-  const response = await axios.post(baseUrl, body, config);
+  const response = await axios.post(baseUrl, body, config());
   return response.data;
 };
 
@@ -30,13 +30,13 @@ const editBlog = async ({ id, user, ...body }) => {
   const result = await axios.put(
     `${baseUrl}/${id}`,
     { user: user?.id, ...body },
-    config
+    config()
   );
   return result;
 };
 
 const removeBlog = async (id) => {
-  await axios.delete(`${baseUrl}/${id}`, config);
+  await axios.delete(`${baseUrl}/${id}`, config());
 };
 
 export default { getAll, postBlog, editBlog, removeBlog };

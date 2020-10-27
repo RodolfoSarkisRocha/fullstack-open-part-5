@@ -14,15 +14,9 @@ const Login = ({ setUser, setFeedback }) => {
       const user = await loginService.login({
         username,
         password,
-      });
-
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user));
-
-      loginService.setToken(user.token);
+      });      
 
       setUser(user);
-      setUsername('');
-      setPassword('');
     } catch (exception) {
       setFeedback({
         message: 'Wrong username or password!',
@@ -37,6 +31,7 @@ const Login = ({ setUser, setFeedback }) => {
         <div>
           <label htmlFor='username'>Username: </label>
           <input
+            id='username'
             value={username}
             type='text'
             name='Username'
@@ -46,13 +41,16 @@ const Login = ({ setUser, setFeedback }) => {
         <div>
           <label htmlFor='password'>Password: </label>
           <input
+            id='password'
             value={password}
             type='password'
             name='Password'
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
-        <button type='submit'>Login</button>
+        <button id='login-button' type='submit'>
+          Login
+        </button>
       </form>
     </div>
   );

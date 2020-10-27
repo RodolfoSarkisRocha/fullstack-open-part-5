@@ -38,8 +38,8 @@ const Feedback = ({ message, type }) => {
 };
 
 Feedback.propTypes = {
-  message: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  message: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default Feedback;
