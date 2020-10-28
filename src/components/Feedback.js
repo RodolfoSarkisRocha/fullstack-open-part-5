@@ -27,13 +27,21 @@ const successMessageStyle = {
   marginBottom: 10,
 };
 
-const Feedback = ({ message, type }) => {  
+const Feedback = ({ message, type }) => {
   if (message === null || type === null) return null;
   if (type === 'error') {
-    return <div style={errorMessageStyle}>{message}</div>;
+    return (
+      <div id='error-feedback' style={errorMessageStyle}>
+        {message}
+      </div>
+    );
   }
   if (type === 'success') {
-    return <div style={successMessageStyle}>{message}</div>;
+    return (
+      <div id='success-feedback' style={successMessageStyle}>
+        {message}
+      </div>
+    );
   }
 };
 

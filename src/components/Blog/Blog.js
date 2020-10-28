@@ -16,9 +16,13 @@ const Blog = ({ blog, updateBlog, removeBlog }) => {
 
   return (
     <div style={blogStyle} className='blog'>
-      <span>{title} {author}</span>
       <span>
-        <button className='like-button' onClick={() => updateBlog(blog)}>Like!</button>
+        {title} {author}
+      </span>
+      <span>
+        <button className='like-button' onClick={() => updateBlog(blog)}>
+          Like!
+        </button>
         <button onClick={toggleDetails}>
           {visibleDetails ? 'Hide details' : 'View details'}
         </button>
@@ -27,7 +31,7 @@ const Blog = ({ blog, updateBlog, removeBlog }) => {
         <div>
           <div>{`Author: ${author}`}</div>
           <div>{`URL: ${url}`}</div>
-          <div>{`Likes: ${likes}`}</div>
+          <div className='blog-likes'>{`Likes: ${likes}`}</div>
           <div>{`Created by: ${user?.name || 'Unknown'}`}</div>
           <button
             onClick={() => {

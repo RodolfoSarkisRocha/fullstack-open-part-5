@@ -27,7 +27,7 @@ const BlogForm = ({ handleBlogSubmit }) => {
       author: '',
       url: '',
     });
-    blogFormRef.current.toggleVisibility();
+    if (blogFormRef?.current) blogFormRef.current.toggleVisibility();
   };
 
   const { title, author, url } = blog;
@@ -38,23 +38,35 @@ const BlogForm = ({ handleBlogSubmit }) => {
       <form onSubmit={submitBlog}>
         <div>
           <label htmlFor='title'>Title: </label>
-          <input id='title' name='title' value={title} onChange={handleBlogInputs} />
+          <input
+            id='title'
+            name='title'
+            value={title}
+            onChange={handleBlogInputs}
+          />
         </div>
         <div>
           <label htmlFor='author'>Author: </label>
-          <input id='author' name='author' value={author} onChange={handleBlogInputs} />
+          <input
+            id='author'
+            name='author'
+            value={author}
+            onChange={handleBlogInputs}
+          />
         </div>
         <div>
           <label htmlFor='url'>Url: </label>
           <input id='url' name='url' value={url} onChange={handleBlogInputs} />
         </div>
-        <button id='submit-blog-button' type='submit'>Create</button>
+        <button id='submit-blog-button' type='submit'>
+          Create
+        </button>
       </form>
     </Togglable>
   );
 };
 
-BlogForm.propTypes = {    
+BlogForm.propTypes = {
   handleBlogSubmit: PropTypes.func.isRequired,
 };
 
